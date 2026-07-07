@@ -1,0 +1,32 @@
+[tool.poetry]
+name = "pdf-qa-chatbot"
+version = "1.0.0"
+description = "Advanced RAG System for PDF Q&A"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+langchain = "^0.1.20"
+openai = "^1.23.2"
+streamlit = "^1.33.0"
+fastapi = "^0.110.2"
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]

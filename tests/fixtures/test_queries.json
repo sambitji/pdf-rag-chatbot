@@ -1,0 +1,115 @@
+{
+  "test_cases": [
+    {
+      "query": "What is the main topic of the document?",
+      "expected_answer": "The document discusses enterprise knowledge management and document retrieval systems.",
+      "relevant_docs": ["1", "2"],
+      "metadata": {
+        "category": "general",
+        "difficulty": "easy",
+        "expected_sources": 2
+      }
+    },
+    {
+      "query": "Summarize the key findings",
+      "expected_answer": "The key findings include improved accuracy with RAG systems, faster retrieval times, and better user satisfaction.",
+      "relevant_docs": ["1", "3", "5"],
+      "metadata": {
+        "category": "summarization",
+        "difficulty": "medium",
+        "expected_sources": 3
+      }
+    },
+    {
+      "query": "What are the technical requirements mentioned?",
+      "expected_answer": "Technical requirements include Python 3.10+, OpenAI API access, and minimum 8GB RAM.",
+      "relevant_docs": ["4", "5"],
+      "metadata": {
+        "category": "technical",
+        "difficulty": "medium",
+        "expected_sources": 2
+      }
+    },
+    {
+      "query": "Compare the different approaches discussed",
+      "expected_answer": "The document compares vector-based retrieval with traditional keyword search, highlighting vector search's semantic understanding advantages.",
+      "relevant_docs": ["2", "3", "4"],
+      "metadata": {
+        "category": "comparison",
+        "difficulty": "hard",
+        "expected_sources": 3
+      }
+    },
+    {
+      "query": "What is the conclusion?",
+      "expected_answer": "The conclusion emphasizes that RAG systems significantly improve document Q&A accuracy and user experience.",
+      "relevant_docs": ["6"],
+      "metadata": {
+        "category": "conclusion",
+        "difficulty": "easy",
+        "expected_sources": 1
+      }
+    },
+    {
+      "query": "Who are the target users?",
+      "expected_answer": "Target users include enterprise teams, researchers, customer support agents, and knowledge workers.",
+      "relevant_docs": ["1", "2"],
+      "metadata": {
+        "category": "detail",
+        "difficulty": "easy",
+        "expected_sources": 2
+      }
+    },
+    {
+      "query": "What are the performance metrics?",
+      "expected_answer": "Performance metrics show 95%+ accuracy, sub-second response times, and 85% cache hit rates.",
+      "relevant_docs": ["5", "6"],
+      "metadata": {
+        "category": "metrics",
+        "difficulty": "medium",
+        "expected_sources": 2
+      }
+    },
+    {
+      "query": "Explain the architecture",
+      "expected_answer": "The architecture consists of document ingestion, embedding generation, vector storage, retrieval, and LLM-based response generation.",
+      "relevant_docs": ["3", "4"],
+      "metadata": {
+        "category": "technical",
+        "difficulty": "hard",
+        "expected_sources": 2
+      }
+    },
+    {
+      "query": "What are the limitations?",
+      "expected_answer": "Limitations include dependency on quality embeddings, potential hallucination, and computational costs.",
+      "relevant_docs": ["6"],
+      "metadata": {
+        "category": "limitations",
+        "difficulty": "medium",
+        "expected_sources": 1
+      }
+    },
+    {
+      "query": "What future improvements are suggested?",
+      "expected_answer": "Future improvements include multi-modal support, fine-tuned models, and enhanced caching strategies.",
+      "relevant_docs": ["6"],
+      "metadata": {
+        "category": "future",
+        "difficulty": "easy",
+        "expected_sources": 1
+      }
+    }
+  ],
+  "metadata": {
+    "version": "1.0",
+    "created": "2024-01-15",
+    "total_cases": 10,
+    "categories": ["general", "summarization", "technical", "comparison", "conclusion", "detail", "metrics", "limitations", "future"],
+    "difficulty_distribution": {
+      "easy": 4,
+      "medium": 4,
+      "hard": 2
+    }
+  }
+}

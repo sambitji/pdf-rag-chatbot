@@ -1,0 +1,133 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-system-streamlit
+  labels:
+    app: rag-system
+    component: streamlit
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: rag-system
+      component: streamlit
+  template:
+    metadata:
+      labels:
+        app: rag-system
+        component: streamlit
+    spec:
+      containers:
+      - name: streamlit
+        image: rag-system:streamlit-latest
+        ports:
+        - containerPort: 8501
+        env:
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: rag-secrets
+              key: openai-api-key
+        - name: REDIS_HOST
+          value: redis-service
+        - name: ENVIRONMENT
+          value: production
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        volumeMounts:
+        - name: storage
+          mountPath: /app/storage
+      volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: rag-storage-pvc
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rag-system-api
+  labels:
+    app: rag-system
+    component: api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rag-system
+      component: api
+  template:
+    metadata:
+      labels:
+        app: rag-system
+        component: api
+    spec:
+      containers:
+      - name: api
+        image: rag-system:api-latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: OPENAI_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: rag-secrets
+              key: openai-api-key
+        - name: API_SECRET_KEY
+          valueFrom:
+            secretKeyRef:
+              name: rag-secrets
+              key: api-secret-key
+        - name: REDIS_HOST
+          value: redis-service
+        - name: ENVIRONMENT
+          value: production
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "2Gi"
+            cpu: "1000m"
+        volumeMounts:
+        - name: storage
+          mountPath: /app/storage
+      volumes:
+      - name: storage
+        persistentVolumeClaim:
+          claimName: rag-storage-pvc
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis:7-alpine
+        ports:
+        - containerPort: 6379
+        resources:
+          requests:
+            memory: "256Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "200m"

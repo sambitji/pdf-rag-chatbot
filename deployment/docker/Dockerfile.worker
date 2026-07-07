@@ -1,0 +1,32 @@
+# Celery Worker Dockerfile for background tasks
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    tesseract-ocr \
+    poppler-utils \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy requirements
+COPY requirements.txt .
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install celery[redis]==5.3.6
+
+# Copy application
+COPY . .
+
+# Create necessary directories
+RUN mkdir -p storage/documents storage/vectordb storage/cache storage/temp logs
+
+# Environment variables
+ENV PYTHONUNBUFFERED=1
+ENV C_FORCE_ROOT=true
+
+# Run Celery worker
+CMD ["celery", "-A", "tasks.celery_app", "worker", "--loglevel=info", "--concurrency=4"]
