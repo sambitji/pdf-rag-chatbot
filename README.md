@@ -167,7 +167,7 @@ Contributions welcome! See CONTRIBUTING.md
 This project is licensed under the MIT License - see LICENSE
 
 👥 Authors
-Your Name - Initial work
+Sambit Sharma
 🙏 Acknowledgments
 OpenAI for LLM and embeddings
 LangChain for RAG framework
