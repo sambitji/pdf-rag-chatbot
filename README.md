@@ -1,3 +1,4 @@
+<img width="8036" height="9490" alt="diagram (1)" src="https://github.com/user-attachments/assets/93c955c2-f557-4c3d-bfbd-39910cc83eaa" />
 # 📚 Advanced RAG System - PDF Q&A Chatbot
 
 ![Python](https://img.shields.io/badge/python-3.10+-blue.svg)
